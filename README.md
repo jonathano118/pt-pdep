@@ -5,7 +5,7 @@
 ## Integrantes
 
 - integrante1 (carolmk16)
-- integrante2 (usuario github)
+- Jonathan Oviedo (jonathano118)
 - integrante3 (usuario github)
 
 ## Enunciado
