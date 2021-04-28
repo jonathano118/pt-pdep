@@ -4,7 +4,7 @@
 
 ## Integrantes
 
-- integrante1 (usuario github)
+- integrante1 (carolmk16)
 - integrante2 (usuario github)
 - integrante3 (usuario github)
 
