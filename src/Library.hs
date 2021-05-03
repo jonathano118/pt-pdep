@@ -1,8 +1,6 @@
 module Library where
 import PdePreludat
 
-doble :: Number -> Number
-doble numero = numero + numero
 
 data Persona = Persona {
     edad :: Number,
@@ -12,12 +10,14 @@ data Persona = Persona {
     habilidades :: [String]
 } deriving (Show)
 
+type Suenios = Persona -> Persona
+
 
 fede :: Persona
 fede = Persona {
     edad = 20,
-    sueniosPorCumplir = ["morir", "recibirme de prostituta"],
     nombre = "fede",
+    sueniosPorCumplir = ["morir jaja"],
     felicidonios = 150,
     habilidades = ["nada jaja"]
 } 
@@ -29,7 +29,7 @@ fede = Persona {
 coeficienteSatisfaccion :: Persona -> Number
 coeficienteSatisfaccion persona
     | ((>100).felicidonios) persona = (felicidonios persona * edad persona) 
-    | (felicidonios persona <= 100 && felicidonios persona> 50) = (length.sueniosPorCumplir) persona * felicidonios persona
+    -- | (felicidonios persona <= 100 && felicidonios persona> 50) = (length.sueniosPorCumplir) persona * felicidonios persona
     | otherwise = truncate (((/2).felicidonios) persona)
 
 
