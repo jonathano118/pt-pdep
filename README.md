@@ -1,6 +1,6 @@
 # TP Funcional 2021 - Fuente de los Deseos
 
-> TODO: Poner badge de Github Actions
+> TODO: [![build](https://github.com/pdep-mn-utn/tp-funcional-fuente-deseos-memorias-de-una-ram/actions/workflows/build.yml/badge.svg)](https://github.com/pdep-mn-utn/tp-funcional-fuente-deseos-memorias-de-una-ram/actions/workflows/build.yml)
 
 ## Integrantes
 
