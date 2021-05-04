@@ -5,10 +5,20 @@ import Test.Hspec
 
 correrTests :: IO ()
 correrTests = hspec $ do
-  describe "Test punto 1" $ do
+  describe "Tests para punto 1" $ do
     it "Coeficiente de satisfaccion de Fede" $ do
-      coeficienteSatisfaccion fede `shouldBe` 3000
+      coeficienteSatisfaccion {
+      edad = 25,
+      nombre = "Fede",
+      sueniosPorCumplir = 5,
+      felicidonios = 101,
+      habilidades = ["nada jaja"]} `shouldBe` 2525
 
-  describe "Test punto 2" $ do
-    it "Nombre de Fede" $ do
-      fede `shouldNotSatisfy` nombreLargo
+    it "Coeficiente de satisfaccion de Cami" $ do
+      coeficienteSatisfaccion persona {
+      edad = 22,
+      nombre = "Cami",
+      sueniosPorCumplir = 2,
+      felicidonios = 100,
+      habilidades = ["nada jaja"]} `shouldBe` 200
+
