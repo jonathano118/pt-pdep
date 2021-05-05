@@ -14,19 +14,6 @@ data Persona = Persona {
 type Suenios = Persona -> Persona
 
 
-fede :: Persona
-fede = Persona {
-    edad = 20,
-    nombre = "fede",
-    sueniosPorCumplir = [queTodoSigaIgual],
-    felicidonios = 101,
-    habilidades = ["nada jaja"]
-} 
-
-
-cantidadDeSuenios :: Persona -> Number
-cantidadDeSuenios persona = (length.sueniosPorCumplir) persona
-
 -- Punto 1
 
     -- Punto a
@@ -45,6 +32,8 @@ gradoDeAmbicion persona
     |otherwise = ((*2).cantidadDeSuenios) persona
 
 
+cantidadDeSuenios :: Persona -> Number
+cantidadDeSuenios = length.sueniosPorCumplir
 
   -- Punto 2
 
@@ -54,12 +43,14 @@ nombreLargo persona
     | ((>10).length.nombre) persona = True 
     | otherwise = False
 
+
     -- Punto b
 personaSuertuda :: Persona -> Bool
 personaSuertuda = elTripleEsPar.coeficienteSatisfaccion
 
 elTripleEsPar :: Number -> Bool
 elTripleEsPar = even.(*3)
+
 
 
 -- Punto 3
@@ -73,14 +64,37 @@ recibirse carrera persona = persona {
 
 viajar :: [String] -> Suenios
 viajar [viajes] persona = persona {
-    felicidonios = felicidonios persona + (((*100) . length) [viajes]),
+   felicidonios = felicidonios persona + (((*100) . length) [viajes]),
     edad = ((+1).edad) persona}
 
 
 queTodoSigaIgual :: Suenios
-queTodoSigaIgual persona = persona {
-    sueniosPorCumplir = []
-}
+queTodoSigaIgual persona = persona
+
+
+agregaFelicidonios :: Number -> Suenios
+agregaFelicidonios cantidadAgregada persona = persona {
+    felicidonios = (felicidonios persona) + cantidadAgregada
+} 
 
 comboPerfecto :: Suenios
-comboPerfecto = (recibirse "Medicina" ) . (viajar ["Berazategui", "Paris"]) 
+comboPerfecto = (recibirse "Medicina" ) . (viajar ["Berazategui", "Paris"]) . (agregaFelicidonios 100)
+
+
+
+-- Datos de prueba
+fran :: Persona
+fran = fran {
+edad = 26,
+nombre = "Francisco",
+sueniosPorCumplir = [recibirse "Ingenieria"],
+felicidonios = 40,
+habilidades = ["acrobacia"]}
+
+flor :: Persona
+flor = flor {
+edad = 29,
+nombre = "Florencia",
+sueniosPorCumplir = [recibirse "Doctora"],
+felicidonios = 120,
+habilidades = ["Pelear"]}
