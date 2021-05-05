@@ -72,13 +72,8 @@ queTodoSigaIgual :: Suenios
 queTodoSigaIgual persona = persona
 
 
-agregaFelicidonios :: Number -> Suenios
-agregaFelicidonios cantidadAgregada persona = persona {
-    felicidonios = (felicidonios persona) + cantidadAgregada
-} 
-
 comboPerfecto :: Suenios
-comboPerfecto = (recibirse "Medicina" ) . (viajar ["Berazategui", "Paris"]) . (agregaFelicidonios 100)
+comboPerfecto persona = (recibirse "Medicina" ) $ (viajar ["Berazategui", "Paris"]) persona {felicidonios = felicidonios persona + 100}
 
 
 
