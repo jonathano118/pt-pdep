@@ -3,6 +3,23 @@ import PdePreludat
 import Library
 import Test.Hspec
 
+-- Datos de prueba
+fran :: Persona
+fran = fran {
+edad = 26,
+nombre = "Francisco",
+sueniosPorCumplir = [recibirse "Ingenieria"],
+felicidonios = 40,
+habilidades = ["acrobacia"]}
+
+flor :: Persona
+flor = flor {
+edad = 29,
+nombre = "Florencia",
+sueniosPorCumplir = [recibirse "Doctora"],
+felicidonios = 120,
+habilidades = ["Pelear"]}
+
 correrTests :: IO ()
 correrTests = hspec $ do 
 

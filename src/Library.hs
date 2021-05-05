@@ -19,17 +19,17 @@ type Suenios = Persona -> Persona
     -- Punto a
 coeficienteSatisfaccion :: Persona -> Number
 coeficienteSatisfaccion persona
-    | ((>100).felicidonios) persona = (felicidonios persona * edad persona) 
-    | ((((<= 100).felicidonios) persona)  && (((>50).felicidonios) persona)) = (cantidadDeSuenios persona) * felicidonios persona
-    | otherwise = truncate (((/2).felicidonios) persona)
+    | ((>100).felicidonios) persona = felicidonios persona * edad persona
+    | ((>50).felicidonios) persona = cantidadDeSuenios persona * felicidonios persona
+    | otherwise = felicidonios persona `div` 2
 
 
     -- Punto b
 gradoDeAmbicion :: Persona -> Number
 gradoDeAmbicion persona 
     |((>100).felicidonios) persona = felicidonios persona * cantidadDeSuenios persona
-    |((((<= 100).felicidonios) persona)  && (((>50).felicidonios) persona)) = edad persona * (cantidadDeSuenios persona)
-    |otherwise = ((*2).cantidadDeSuenios) persona
+    |((>50).felicidonios) persona = edad persona * cantidadDeSuenios persona
+    |otherwise = cantidadDeSuenios persona * 2
 
 
 cantidadDeSuenios :: Persona -> Number
@@ -39,10 +39,10 @@ cantidadDeSuenios = length.sueniosPorCumplir
 
     -- Punto a
 nombreLargo :: Persona -> Bool
-nombreLargo persona
+nombreLargo persona 
     | ((>10).length.nombre) persona = True 
     | otherwise = False
-
+-- nombreLargo = (>10).length.nombre
 
     -- Punto b
 personaSuertuda :: Persona -> Bool
@@ -54,42 +54,38 @@ elTripleEsPar = even.(*3)
 
 
 -- Punto 3
-
+          -- String -->  Persona -> Persona
 recibirse :: String -> Suenios
-recibirse carrera persona = persona {
-    felicidonios = felicidonios persona + (((*1000) . length) carrera),
-    habilidades = ((habilidades persona) ++ [carrera])}
+recibirse carrera persona = sumarFelicidonios 
+                                      (1000 * length carrera) 
+                                      persona { habilidades = ((habilidades persona) ++ [carrera]) }
+-- persona {
+--    felicidonios = felicidonios persona + (((*1000) . length) carrera),
+--    habilidades = ((habilidades persona) ++ [carrera])}
 
+--sumarHabilidad :: String -> Suenios
+--sumarHabilidad habilidad persona = persona {
+--    habilidades = habilidades persona ++ [habilidad]
+--}
 
+sumarFelicidonios :: Number -> Suenios
+sumarFelicidonios cantidad persona = persona {
+    felicidonios =  felicidonios persona + cantidad
+}
 
 viajar :: [String] -> Suenios
-viajar [viajes] persona = persona {
-   felicidonios = felicidonios persona + (((*100) . length) [viajes]),
-    edad = ((+1).edad) persona}
+viajar [viajes] persona = sumarFelicidonios (100 * length [viajes]) 
+                                            persona { edad = ((+1).edad) persona}
 
 
 queTodoSigaIgual :: Suenios
 queTodoSigaIgual persona = persona
 
+--queTodoSigaIgual = id
+
 
 comboPerfecto :: Suenios
 comboPerfecto persona = (recibirse "Medicina" ) $ (viajar ["Berazategui", "Paris"]) persona {felicidonios = felicidonios persona + 100}
+-- definirlo usando composición
 
 
-
--- Datos de prueba
-fran :: Persona
-fran = fran {
-edad = 26,
-nombre = "Francisco",
-sueniosPorCumplir = [recibirse "Ingenieria"],
-felicidonios = 40,
-habilidades = ["acrobacia"]}
-
-flor :: Persona
-flor = flor {
-edad = 29,
-nombre = "Florencia",
-sueniosPorCumplir = [recibirse "Doctora"],
-felicidonios = 120,
-habilidades = ["Pelear"]}
