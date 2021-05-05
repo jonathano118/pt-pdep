@@ -18,7 +18,7 @@ fede :: Persona
 fede = Persona {
     edad = 20,
     nombre = "fede",
-    sueniosPorCumplir = [recibirse "gei", viajar ["aqui","aia"]],
+    sueniosPorCumplir = [queTodoSigaIgual],
     felicidonios = 101,
     habilidades = ["nada jaja"]
 } 
@@ -75,3 +75,12 @@ viajar :: [String] -> Suenios
 viajar [viajes] persona = persona {
     felicidonios = felicidonios persona + (((*100) . length) [viajes]),
     edad = ((+1).edad) persona}
+
+
+queTodoSigaIgual :: Suenios
+queTodoSigaIgual persona = persona {
+    sueniosPorCumplir = []
+}
+
+comboPerfecto :: Suenios
+comboPerfecto = (recibirse "Medicina" ) . (viajar ["Berazategui", "Paris"]) 
