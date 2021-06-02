@@ -39,10 +39,7 @@ cantidadDeSuenios = length.sueniosPorCumplir
 
     -- Punto a
 nombreLargo :: Persona -> Bool
-nombreLargo persona 
-    | ((>10).length.nombre) persona = True 
-    | otherwise = False
--- nombreLargo = (>10).length.nombre
+nombreLargo = (>10).length.nombre
 
     -- Punto b
 personaSuertuda :: Persona -> Bool
@@ -79,13 +76,18 @@ viajar [viajes] persona = sumarFelicidonios (100 * length [viajes])
 
 
 queTodoSigaIgual :: Suenios
-queTodoSigaIgual persona = persona
-
---queTodoSigaIgual = id
+queTodoSigaIgual = id
 
 
 comboPerfecto :: Suenios
-comboPerfecto persona = (recibirse "Medicina" ) $ (viajar ["Berazategui", "Paris"]) persona {felicidonios = felicidonios persona + 100}
+comboPerfecto = ((recibirse "Medicina" ) . (viajar ["Berazategui", "Paris"]) . (sumarFelicidonios 100))
 -- definirlo usando composición
 
 
+-- Punto 4
+
+    -- Punto a
+
+cumplirSuenios :: Suenios
+cumplirSuenios persona = persona {
+    sueniosPorCumplir = tail (sueniosPorCumplir persona)}

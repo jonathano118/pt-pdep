@@ -145,12 +145,13 @@ correrTests = hspec $ do
     it "Sueños de una persona quiere que todo siga igual" $ do
       (habilidades.queTodoSigaIgual) fran `shouldBe` ["acrobacias"]
 
-    
-
   describe "Test que cumple el sueño de una persona de recibirse de Medicina y viajar a Berazategui y Paris" $ do
     it "Felicidonios de la persona" $ do
       (felicidonios.comboPerfecto) flor `shouldBe` 8420
 
     it "Felicidonios de la persona" $ do
       (edad.comboPerfecto) flor `shouldBe` 30
-    
+
+  describe "Tests que cumplen el sueño de una persona" $ do
+    it "Felicidonios de la persona" $ do
+      (habilidades.cumplirSuenios) fran `shouldBe` tail (habilidades fran)
