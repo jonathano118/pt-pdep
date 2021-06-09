@@ -8,25 +8,25 @@ fran :: Persona
 fran = Persona {
       edad = 26,
       nombre = "Francisco",
-      sueniosPorCumplir = [recibirse "Ingenieria"],
+      sueniosPorCumplir = [viajar["Ituzaingo"]],
       felicidonios = 40,
-      habilidades = ["acrobacias"]}
+      habilidades = ["Dormirse temprano"]}
 
 flor :: Persona
 flor = Persona {
       edad = 29,
       nombre = "Florencia",
-      sueniosPorCumplir = [recibirse "Doctora"],
-      felicidonios = 120,
+      sueniosPorCumplir = [recibirse "Doctora", queTodoSigaIgual, viajar ["Caracas", "La Plata"]],
+      felicidonios = 90,
       habilidades = ["Pelear"]}
 
 joni::Persona
 joni = Persona {
-      edad = 26,
+      edad = 23,
       nombre = "Jonathan",
-      sueniosPorCumplir = [recibirse "ingeiniero", recibirse "Doctor", queTodoSigaIgual],
-      felicidonios = 100,
-      habilidades = []}
+      sueniosPorCumplir = [recibirse "Ingeiniero", recibirse "Programador"],
+      felicidonios = 80,
+      habilidades = ["Nada"]}
 
 correrTests :: IO ()
 correrTests = hspec $ do 
@@ -34,91 +34,40 @@ correrTests = hspec $ do
 --   -- Punto 1
 --   describe "Tests para validar si una persona está satisfecha con su vida" $ do 
 --     it "Coeficiente de satisfaccion de una persona muy feliz" $ do
---       coeficienteSatisfaccion Persona {
---       edad = 25,
---       nombre = "Fede",
---       sueniosPorCumplir = [recibirse "arquitectura", viajar ["Milan"]],
---       felicidonios = 101,
---       habilidades = ["Dibujar"]} `shouldBe` 2525
+--       coeficienteSatisfaccion flor`shouldBe` 2525
 
 --     it "Coeficiente de satisfaccion de una Persona moderadamente feliz" $ do
---       coeficienteSatisfaccion Persona {
---       edad = 25,
---       nombre = "Fede",
---       sueniosPorCumplir = [recibirse "diseño", viajar ["Caracas","Cancún"]],
---       felicidonios = 100,
---       habilidades = [""]} `shouldBe` 200  
+--       coeficienteSatisfaccion flor `shouldBe` 200  
 
 --     it "Coeficiente de satisfaccion de una Persona poco feliz" $ do
---       coeficienteSatisfaccion Persona {
---       edad = 25,
---       nombre = "Fede",
---       sueniosPorCumplir = [recibirse "arquitectura", viajar ["Caricuao"]],
---       felicidonios = 50,
---       habilidades = ["nada jaja"]} `shouldBe` 25
+--       coeficienteSatisfaccion fran `shouldBe` 25
 
 
 --   describe "Tests para verificar la ambición de una persona" $ do
 --     it "Grado de ambición de una Persona muy feliz" $ do
---       gradoDeAmbicion Persona{
---       edad = 25,
---       nombre = "Fede",
---       sueniosPorCumplir = [recibirse "bióloga", viajar ["París","Roma"]],
---       felicidonios = 101,
---       habilidades = ["acrobacia"]} `shouldBe` 202
+--       gradoDeAmbicion flor `shouldBe` 202
 
 --     it "Grado de ambición de una Persona moderadamente feliz" $ do
---       gradoDeAmbicion Persona {
---       edad = 26,
---       nombre = "Fede",
---       sueniosPorCumplir = [recibirse "bióloga", viajar ["París","Roma"]],
---       felicidonios = 100,
---       habilidades = ["acrobacia"]} `shouldBe` 52
+--       gradoDeAmbicion joni `shouldBe` 52
 
 --     it "Grado de ambición de una Persona poco feliz" $ do
---       gradoDeAmbicion Persona {
---       edad = 26,
---       nombre = "Fede",
---       sueniosPorCumplir = [recibirse "bióloga"],
---       felicidonios = 50,
---       habilidades = ["acrobacia"]} `shouldBe` 2
+--       gradoDeAmbicion fran `shouldBe` 2
 
 -- -- Punto 2
 --   describe "Tests para verificar si tiene o no un nombre largo" $ do
 --     it "Una persona tiene un nombre largo" $ do
---       Persona {
---       edad = 20,
---       nombre = "Maximiliano",
---       sueniosPorCumplir = [recibirse "Docente"],
---       felicidonios = 80,
---       habilidades = ["Dormirse en el colectivo"]} `shouldSatisfy` nombreLargo
+--       maxi `shouldSatisfy` nombreLargo
 
 --     it "Una persona no tiene un nombre largo" $ do
---       Persona {
---       edad = 32,
---       nombre = "Evangelina",
---       sueniosPorCumplir = [viajar ["Bariloche"]],
---       felicidonios = 30,
---       habilidades = ["Saltar en un pie"]} `shouldNotSatisfy` nombreLargo
-
+--       flor `shouldNotSatisfy` nombreLargo
 
 
 --   describe "Tests que validan si una persona es suertuda" $ do
 --     it "Una persona no es suertuda" $ do
---       Persona {
---       edad = 23,
---       nombre = "johnny",
---       sueniosPorCumplir = [recibirse "biólogo", viajar ["París","Roma"]],
---       felicidonios = 14,
---       habilidades = ["Nadar"]} `shouldNotSatisfy` personaSuertuda
+--       joni `shouldNotSatisfy` personaSuertuda
 
 --     it "Una persona es suertuda" $ do
---       Persona {
---       edad = 22,
---       nombre = "Carol",
---       sueniosPorCumplir = [recibirse "bióloga", viajar ["París","Roma"]],
---       felicidonios = 12,
---       habilidades = ["acrobacia"]} `shouldSatisfy` personaSuertuda
+--       fran `shouldSatisfy` personaSuertuda
 
 --  --Punto 3
 
@@ -129,7 +78,6 @@ correrTests = hspec $ do
 --     it "Habilidades de una persona que se recibe" $ do
 --      (habilidades.recibirse "Ingenieria") fran `shouldBe` ["acrobacia","ingenieria"]
 
-
      
 --   describe "Tests que cumplen el sueño de una persona de viajar" $ do
 --     it "Felicidonios de una persona que viaja a dos ciudades" $ do
@@ -137,7 +85,6 @@ correrTests = hspec $ do
 
 --     it "Edad de una persona que viaja" $ do
 --       (edad.viajar ["París","Roma"]) flor `shouldBe` 30
-
 
 
 --   describe "Tests que cumplen el sueño de una persona conformista" $ do
@@ -155,25 +102,47 @@ correrTests = hspec $ do
 
 --   describe "Test que cumple el sueño de una persona de recibirse de Medicina y viajar a Berazategui y Paris" $ do
 --     it "Felicidonios de la persona" $ do
---       (felicidonios.comboPerfecto) flor `shouldBe` 8420
+--       (felicidonios.comboPerfecto) flor `shouldBe` 8390
 
 --     it "Edad de la persona" $ do
 --       (edad.comboPerfecto) flor `shouldBe` 30
 
---   describe "Tests que cumplen el primer sueño de una persona" $ do
---     it "Felicidonios de la persona" $ do
---      (felicidonios.fuenteMinimalista) joni `shouldBe` 10100
+
+
+
+-- Entrega 2
+      
+      --Punto 4
+
+  describe "Tests de fuente que cumple el primer sueño de una persona" $ do
+    it "Felicidonios de la persona" $ do
+     (felicidonios.fuenteMinimalista) joni `shouldBe` 10080
+
      
---     it "Habilidades de la persona" $ do
---      (habilidades.fuenteMinimalista) joni `shouldBe` ["ingeiniero"]
+    it "Habilidades de la persona" $ do
+     (habilidades.fuenteMinimalista) joni `shouldBe` ["Nada","Ingeiniero"]
 
---     it "Sueños de la persona" $ do
---      (length.sueniosPorCumplir.fuenteMinimalista) joni `shouldBe` 1
+    it "Sueños de la persona" $ do
+     (length.sueniosPorCumplir.fuenteMinimalista) joni `shouldBe` 1
 
 
-     describe "Test que verifica cuantos sueños de una persona son valiosos" $ do
-       it "Cantidad de felicidonios" $ do
-         (length.suenioValioso) fran `shouldBe` 1
+
+
+  describe "Tests de fuente que no cumple ningun deseo" $ do
+    it "Felicidonios de la persona" $ do
+     (felicidonios.fuenteSorda) fran `shouldBe` 40
+     
+    it "Habilidades de la persona" $ do
+     (habilidades.fuenteSorda) fran `shouldBe` ["Dormirse temprano"]
+
+    it "Sueños de la persona" $ do
+     (length.sueniosPorCumplir.fuenteSorda) fran `shouldBe` 1
+
+      --Punto 6
+
+  describe "Test que verifica cuantos sueños de una persona son valiosos" $ do
+    it "Cantidad de sueños valiosos" $ do
+     (length.suenioValioso) flor `shouldBe` 2
 
 
                                                 

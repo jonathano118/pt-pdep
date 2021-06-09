@@ -65,7 +65,7 @@ recibirse carrera persona = sumarFelicidonios
 
 
 viajar :: [String] -> Suenios
-viajar [viajes] persona = sumarFelicidonios (100 * length [viajes]) 
+viajar viajes persona = sumarFelicidonios (100 * length viajes) 
                                             persona { edad = ((+1).edad) persona}
 
 
