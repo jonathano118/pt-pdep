@@ -24,7 +24,7 @@ joni::Persona
 joni = Persona {
       edad = 26,
       nombre = "Jonathan",
-      sueniosPorCumplir = [recibirse "ingeiniero", viajar ["París","Roma"]],
+      sueniosPorCumplir = [recibirse "ingeiniero", recibirse "Doctor", queTodoSigaIgual],
       felicidonios = 100,
       habilidades = []}
 
@@ -160,20 +160,20 @@ correrTests = hspec $ do
 --     it "Edad de la persona" $ do
 --       (edad.comboPerfecto) flor `shouldBe` 30
 
-  describe "Tests que cumplen el primer sueño de una persona" $ do
-    it "Felicidonios de la persona" $ do
-     (felicidonios.fuenteMinimalista) joni `shouldBe` 10100
+--   describe "Tests que cumplen el primer sueño de una persona" $ do
+--     it "Felicidonios de la persona" $ do
+--      (felicidonios.fuenteMinimalista) joni `shouldBe` 10100
      
-    it "Habilidades de la persona" $ do
-     (habilidades.fuenteMinimalista) joni `shouldBe` ["ingeiniero"]
+--     it "Habilidades de la persona" $ do
+--      (habilidades.fuenteMinimalista) joni `shouldBe` ["ingeiniero"]
 
-    it "Sueños de la persona" $ do
-     (length.sueniosPorCumplir.fuenteMinimalista) joni `shouldBe` 1
+--     it "Sueños de la persona" $ do
+--      (length.sueniosPorCumplir.fuenteMinimalista) joni `shouldBe` 1
 
 
-  describe "Tests x" $ do
-    it "felicidonios" $ do
-      felicidoniosFuente fuenteMinimalista joni `shouldBe` 10100
+     describe "Test que verifica cuantos sueños de una persona son valiosos" $ do
+       it "Cantidad de felicidonios" $ do
+         (length.suenioValioso) fran `shouldBe` 1
 
 
                                                 
