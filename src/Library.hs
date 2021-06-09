@@ -80,14 +80,19 @@ comboPerfecto = ((recibirse "Medicina" ) . (viajar ["Berazategui", "Paris"]) . (
 
     -- Punto a
 
+cumplirPrimerSuenio :: Persona -> Persona
+cumplirPrimerSuenio persona = (head . sueniosPorCumplir) persona $ persona
+
+quitarElPrimerSuenio :: Persona -> Persona 
+quitarElPrimerSuenio persona = persona { sueniosPorCumplir = (tail.sueniosPorCumplir) persona}
+
 fuenteMinimalista :: Fuente
-fuenteMinimalista persona = ((head . sueniosPorCumplir) persona) persona {
-    sueniosPorCumplir = (tail.sueniosPorCumplir) persona}
+fuenteMinimalista  = quitarElPrimerSuenio.cumplirPrimerSuenio
 
     -- Punto b
 
 fuenteCopada :: Fuente
-fuenteCopada persona = (foldl (flip ($)) persona (sueniosPorCumplir persona)) {
+fuenteCopada persona = (foldr ($) persona (sueniosPorCumplir persona)) {
     sueniosPorCumplir = []}
 
     --Punto d
@@ -114,6 +119,14 @@ menosFelicidonios [fuente] _ = fuente
 menosFelicidonios (fuente:fuentes) persona
     | (felicidonios.fuente) persona < (felicidonios.(menosFelicidonios (fuentes) persona)) persona = fuente
     | otherwise = menosFelicidonios (fuentes) persona
+
+laFuenteGanadora:: Ord a => (Persona -> a) -> Persona ->[Fuente] ->Fuente
+laFuenteGanadora _ _ [fuente] = fuente 
+laFuenteGanadora criterio persona (primerFuente:segundaFuente:fuentes)
+ | (criterio.primerFuente) persona >= (criterio.segundaFuente) persona = laFuenteGanadora criterio persona (primerFuente:fuentes)
+ | otherwise = laFuenteGanadora criterio persona (segundaFuente:fuentes)
+
+-- laFuenteGanadora (negate.felicidonios) pepe [fuenteCopada, fuenteMinimalista]
 
 
 -- Punto 6

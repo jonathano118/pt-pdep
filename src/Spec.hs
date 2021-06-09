@@ -141,7 +141,7 @@ correrTests = hspec $ do
      (felicidonios.fuenteMinimalista) flor `shouldBe` 7090
 
     it "Habilidades de la persona" $ do
-     (habilidades.fuenteCopada) flor `shouldBe` ["Pelear", "Doctora"]
+     (habilidades.fuenteCopada) flor `shouldMatchList` ["Doctora", "Pelear"]
 
     it "Sueños de la persona" $ do
      (length.sueniosPorCumplir.fuenteCopada) flor `shouldBe` 0
