@@ -28,6 +28,15 @@ joni = Persona {
       felicidonios = 80,
       habilidades = ["Nada"]}
 
+-- fio :: Persona
+-- fio = Persona {
+--       edad = 25,
+--       nombre = "Fiona",
+--       sueniosPorCumplir = [repeat queTodoSigaIgual],
+--       felicidonios = 80,
+--       habilidades = ["Nada"]
+-- }
+
 correrTests :: IO ()
 correrTests = hspec $ do 
 
@@ -113,10 +122,10 @@ correrTests = hspec $ do
 -- Entrega 2
       
       --Punto 4
-
+      -- Punto a
   describe "Tests de fuente que cumple el primer sueño de una persona" $ do
     it "Felicidonios de la persona" $ do
-     (felicidonios.fuenteMinimalista) joni `shouldBe` 10080
+     (felicidonios.fuenteCopada) joni `shouldBe` 21080
 
      
     it "Habilidades de la persona" $ do
@@ -126,8 +135,19 @@ correrTests = hspec $ do
      (length.sueniosPorCumplir.fuenteMinimalista) joni `shouldBe` 1
 
 
+      --Punto b
+  describe "Tests de fuente que le cumple todos los sueños a una persona" $ do
+    it "Felicidonios de la persona" $ do
+     (felicidonios.fuenteMinimalista) flor `shouldBe` 7090
 
+    it "Habilidades de la persona" $ do
+     (habilidades.fuenteCopada) flor `shouldBe` ["Pelear", "Doctora"]
 
+    it "Sueños de la persona" $ do
+     (length.sueniosPorCumplir.fuenteCopada) flor `shouldBe` 0
+    
+
+      -- Punto d
   describe "Tests de fuente que no cumple ningun deseo" $ do
     it "Felicidonios de la persona" $ do
      (felicidonios.fuenteSorda) fran `shouldBe` 40
@@ -137,6 +157,7 @@ correrTests = hspec $ do
 
     it "Sueños de la persona" $ do
      (length.sueniosPorCumplir.fuenteSorda) fran `shouldBe` 1
+
 
       --Punto 6
 

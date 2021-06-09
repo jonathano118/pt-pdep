@@ -84,24 +84,36 @@ fuenteMinimalista :: Fuente
 fuenteMinimalista persona = ((head . sueniosPorCumplir) persona) persona {
     sueniosPorCumplir = (tail.sueniosPorCumplir) persona}
 
+    -- Punto b
+
+fuenteCopada :: Fuente
+fuenteCopada persona = (foldl (flip ($)) persona (sueniosPorCumplir persona)) {
+    sueniosPorCumplir = []}
+
     --Punto d
 fuenteSorda :: Fuente
 fuenteSorda = id
 
 
+
 -- Punto 5
 
+fuenteGanadora :: ([Fuente] -> Persona -> Fuente) -> [Fuente] -> Persona -> Fuente
+fuenteGanadora = id
+
     -- Punto a
-
-fuenteGanadora :: [Fuente] -> ([Fuente] -> Persona -> Fuente) -> Persona -> Fuente
-fuenteGanadora fuentes criterio persona = criterio fuentes persona
-
-
 masFelicidonios :: [Fuente] -> Persona -> Fuente
 masFelicidonios [fuente] _ = fuente
 masFelicidonios (fuente:fuentes) persona
     | (felicidonios.fuente) persona > (felicidonios.(masFelicidonios (fuentes) persona)) persona = fuente
     | otherwise = masFelicidonios (fuentes) persona
+
+    --Punto b
+menosFelicidonios :: [Fuente] -> Persona -> Fuente
+menosFelicidonios [fuente] _ = fuente
+menosFelicidonios (fuente:fuentes) persona
+    | (felicidonios.fuente) persona < (felicidonios.(menosFelicidonios (fuentes) persona)) persona = fuente
+    | otherwise = menosFelicidonios (fuentes) persona
 
 
 -- Punto 6
@@ -109,3 +121,7 @@ masFelicidonios (fuente:fuentes) persona
     --Punto a
 suenioValioso :: Persona -> [Suenios]
 suenioValioso persona =  filter ((>100).felicidonios.($ persona)) (sueniosPorCumplir persona)
+
+    --Punto b
+suenioRaro :: Persona -> Bool
+suenioRaro persona = any ((==(felicidonios persona)).felicidonios.($ persona)) (sueniosPorCumplir persona)
