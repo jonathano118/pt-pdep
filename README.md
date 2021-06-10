@@ -4,9 +4,8 @@
 
 ## Integrantes
 
-- integrante1 (carolmk16)
 - Jonathan Oviedo (jonathano118)
-- integrante3 (usuario github)
+- Carol Navia (carolmk16)
 
 ## Enunciado
 
